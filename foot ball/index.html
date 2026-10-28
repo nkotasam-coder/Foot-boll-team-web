@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>karangazi cfd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="frame">
+
+  <!-- SIDE RAIL -->
+  <aside class="rail">
+    <div class="crest">
+      <span class="crest-mark">IV</span>
+      <div class="crest-text">
+        <strong>karangazi</strong>
+        <span>Cfd</span>
+      </div>
+    </div>
+
+    <nav class="rail-nav" id="railNav">
+      <button class="rail-link active" data-section="overview">Overview</button>
+      <button class="rail-link" data-section="fixtures">Fixtures</button>
+      <button class="rail-link" data-section="match_reports">Match Reports</button>
+      <button class="rail-link" data-section="player_availability">Player Availability</button>
+      <button class="rail-link" data-section="news">News</button>
+      <button class="rail-link" data-section="sponsorships">Sponsorships</button>
+      <button class="rail-link" data-section="enquiries">Enquiries</button>
+      <button class="rail-link" data-section="engagement_stats">Engagement Stats</button>
+      <button class="rail-link" data-section="users">Users</button>
+    </nav>
+
+    <div class="rail-foot">
+      <span id="dbStatus" class="db-dot"></span>
+      <span>local storage · demo data</span>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <header class="topline">
+      <h1 id="pageTitle">Overview</h1>
+      <p id="pageSub">A working snapshot of the club, pulled from eight tables.</p>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="panel" id="panel-overview" data-panel>
+      <div class="ticker" id="tickerRow"></div>
+      <div class="two-col">
+        <div class="card">
+          <h3>Next up</h3>
+          <div id="nextFixture" class="next-fixture"></div>
+        </div>
+        <div class="card">
+          <h3>Latest enquiries</h3>
+          <ul id="recentEnquiries" class="mini-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIXTURES -->
+    <section class="panel hidden" id="panel-fixtures" data-panel>
+      <form class="entry-form" id="form-fixtures">
+        <input required name="opponent" placeholder="Opponent">
+        <select name="home_away"><option value="Home">Home</option><option value="Away">Away</option></select>
+        <input required name="match_date" type="date">
+        <input required name="kickoff_time" type="time">
+        <input name="venue" placeholder="Venue">
+        <input name="competition" placeholder="Competition">
+        <select name="status"><option>Upcoming</option><option>Completed</option><option>Postponed</option></select>
+        <button type="submit">Add fixture</button>
+      </form>
+      <div class="table-wrap"><table id="table-fixtures"><thead></thead><tbody></tbody></table></div>
+    </section>
+
+    <!-- MATCH REPORTS -->
+    <section class="panel hidden" id="panel-match_reports" data-panel>
+      <form class="entry-form" id="form-match_reports">
+        <select name="fixture_id" id="reportFixtureSelect" required></select>
+        <input required name="home_score" type="number" min="0" placeholder="Home score">
+        <input required name="away_score" type="number" min="0" placeholder="Away score">
+        <input name="man_of_match" placeholder="Player of the match">
+        <input name="summary" placeholder="One-line summary" class="wide">
+        <button type="submit">Add report</button>
+      </form>
+      <div class="table-wrap"><table id="table-match_reports"><thead></thead><tbody></tbody></table></div>
+    </section>
+
+    <!-- PLAYER AVAILABILITY -->
+    <section class="panel hidden" id="panel-player_availability" data-panel>
+      <form class="entry-form" id="form-player_availability">
+        <input required name="player_name" placeholder="Player name">
+        <input name="position" placeholder="Position">
+        <select name="status">
+          <option>Available</option><option>Doubtful</option><option>Injured</option><option>Suspended</option>
+        </select>
+        <input name="notes" placeholder="Notes" class="wide">
+        <button type="submit">Add player</button>
+      </form>
+      <div class="table-wrap"><table id="table-player_availability"><thead></thead><tbody></tbody></table></div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="panel hidden" id="panel-news" data-panel>
+      <form class="entry-form" id="form-news">
+        <input required name="title" placeholder="Headline" class="wide">
+        <input name="author" placeholder="Author">
+        <input required name="published_at" type="date">
+        <textarea name="body" placeholder="Story" class="wide" rows="2"></textarea>
+        <button type="submit">Publish</button>
+      </form>
+      <div class="table-wrap"><table id="table-news"><thead></thead><tbody></tbody></table></div>
+    </section>
+
+    <!-- SPONSORSHIPS -->
+    <section class="panel hidden" id="panel-sponsorships" data-panel>
+      <form class="entry-form" id="form-sponsorships">
+        <input required name="sponsor_name" placeholder="Sponsor name">
+        <select name="tier"><option>Platinum</option><option>Gold</option><option>Silver</option></select>
+        <input required name="amount" type="number" min="0" placeholder="Amount (USD)">
+        <input required name="start_date" type="date">
+        <input name="end_date" type="date">
+        <button type="submit">Add sponsor</button>
+      </form>
+      <div class="table-wrap"><table id="table-sponsorships"><thead></thead><tbody></tbody></table></div>
+    </section>
+
+    <!-- ENQUIRIES -->
+    <section class="panel hidden" id="panel-enquiries" data-panel>
+      <form class="entry-form" id="form-enquiries">
+        <input required name="name" placeholder="Name">
+        <input required name="email" type="email" placeholder="Email">
+        <input name="subject" placeholder="Subject">
+        <textarea name="message" placeholder="Message" class="wide" rows="2"></textarea>
+        <button type="submit">Log enquiry</button>
+      </form>
+      <div class="table-wrap"><table id="table-enquiries"><thead></thead><tbody></tbody></table></div>
+    </section>
+
+    <!-- ENGAGEMENT STATS -->
+    <section class="panel hidden" id="panel-engagement_stats" data-panel>
+      <form class="entry-form" id="form-engagement_stats">
+        <input required name="metric_name" placeholder="Metric (e.g. Site visits)">
+        <input required name="value" type="number" placeholder="Value">
+        <input required name="recorded_date" type="date">
+        <button type="submit">Record stat</button>
+      </form>
+      <div class="table-wrap"><table id="table-engagement_stats"><thead></thead><tbody></tbody></table></div>
+    </section>
+
+    <!-- USERS -->
+    <section class="panel hidden" id="panel-users" data-panel>
+      <form class="entry-form" id="form-users">
+        <input required name="full_name" placeholder="Full name">
+        <input required name="email" type="email" placeholder="Email">
+        <select name="role"><option>Admin</option><option>Coach</option><option>Player</option><option>Fan</option></select>
+        <button type="submit">Add user</button>
+      </form>
+      <div class="table-wrap"><table id="table-users"><thead></thead><tbody></tbody></table></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
